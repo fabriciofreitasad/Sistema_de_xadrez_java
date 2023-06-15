@@ -4,12 +4,12 @@ public class Mesa {
 
 	private int linha;
 	private int coluna;
-	private Peca[][] peca;
+	private Peca[][] pecas;
 
 	public Mesa(int linha, int coluna) {
 		this.linha = linha;
 		this.coluna = coluna;
-		peca = new Peca[linha][coluna];
+		pecas = new Peca[linha][coluna];
 	}
 
 	public int getLinha() {
@@ -26,6 +26,14 @@ public class Mesa {
 
 	public void setColuna(int coluna) {
 		this.coluna = coluna;
+	}
+
+	public Peca peca(int linha, int coluna) {
+		return pecas[linha][coluna];
+	}
+	
+	public Peca peca(Posicao posicao) {
+		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 
 }
