@@ -1,17 +1,13 @@
 package tabuleiro;
 
-
-
 public class Mesa {
-	
-
 	private int linhas;
 	private int colunas;
 	private Peca[][] pecas;
 	
 	public Mesa(int linhas, int colunas) {
 		if (linhas < 1 || colunas < 1) {
-			throw new ExceptionMesa("Error creating board: there must be at least 1 linhas and 1 coluna");
+			throw new MesaException("Error creating board: there must be at least 1 linha and 1 coluna");
 		}
 		this.linhas = linhas;
 		this.colunas = colunas;
@@ -26,30 +22,30 @@ public class Mesa {
 		return colunas;
 	}
 	
-	public Peca peca(int linhas, int colunas) {
-		if (!posicaoExists(linhas, colunas)) {
-			throw new ExceptionMesa("Posicao not on the board");
+	public Peca peca(int linha, int coluna) {
+		if (!posicaoExists(linha, coluna)) {
+			throw new MesaException("Posicao not on the board");
 		}
-		return pecas[linhas][colunas];
+		return pecas[linha][coluna];
 	}
 	
 	public Peca peca(Posicao posicao) {
 		if (!posicaoExists(posicao)) {
-			throw new ExceptionMesa("Posicao not on the board");
+			throw new MesaException("Posicao not on the board");
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 	
-	public void pecaNaPosicao(Peca piece, Posicao posicao) {
+	public void pecaNaPosicao(Peca peca, Posicao posicao) {
 		if (temPeca(posicao)) {
-			throw new ExceptionMesa("There is already a piece on posicao " + posicao);
+			throw new MesaException("There is already a peca on posicao " + posicao);
 		}
-		pecas[posicao.getLinha()][posicao.getColuna()] = piece;
-		piece.posicao = posicao;
+		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+		peca.posicao = posicao;
 	}
 	
-	private boolean posicaoExists(int linhas, int colunas) {
-		return linhas >= 0 && linhas < linhas && colunas >= 0 && colunas < colunas;
+	private boolean posicaoExists(int linha, int coluna) {
+		return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas;
 	}
 	
 	public boolean posicaoExists(Posicao posicao) {
@@ -58,7 +54,7 @@ public class Mesa {
 	
 	public boolean temPeca(Posicao posicao) {
 		if (!posicaoExists(posicao)) {
-			throw new ExceptionMesa("Posicao not on the board");
+			throw new MesaException("Posicao not on the board");
 		}
 		return peca(posicao) != null;
 	}

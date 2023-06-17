@@ -15,7 +15,7 @@ public class XadrezPartida {
 		initialSetup();
 	}
 	
-	public XadrezPeca[][] getPecas() {
+	public XadrezPeca[][]getPecas() {
 		XadrezPeca[][] mat = new XadrezPeca[mesa.getLinhas()][mesa.getColunas()];
 		for (int i=0; i<mesa.getLinhas(); i++) {
 			for (int j=0; j<mesa.getColunas(); j++) {
