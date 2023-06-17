@@ -4,6 +4,7 @@ import tabuleiro.Mesa;
 import tabuleiro.Peca;
 
 public class XadrezPeca extends Peca {
+	
 	private Color color;
 
 	public XadrezPeca(Mesa mesa, Color color) {

@@ -3,10 +3,7 @@ package tabuleiro;
 public class Posicao {
 	private int linha;
 	private int coluna;
-	
-	public Posicao() {
-	}
-	
+
 	public Posicao(int linha, int coluna) {
 		this.linha = linha;
 		this.coluna = coluna;
@@ -27,11 +24,10 @@ public class Posicao {
 	public void setColuna(int coluna) {
 		this.coluna = coluna;
 	}
-	
+
 	@Override
 	public String toString() {
-		return linha +", "+ coluna;
+		return linha + ", " + coluna;
 	}
-	
-	
+
 }

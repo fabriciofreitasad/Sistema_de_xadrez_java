@@ -9,7 +9,7 @@ public class Rei extends XadrezPeca {
 	public Rei(Mesa mesa, Color color) {
 		super(mesa, color);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "R";
