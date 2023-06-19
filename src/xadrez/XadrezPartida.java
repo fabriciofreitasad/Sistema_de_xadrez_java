@@ -24,11 +24,15 @@ public class XadrezPartida {
 		}
 		return mat;
 	}
+	
+	private void pecaNavaPosicao(char coluna, int linha , XadrezPeca peca) {
+		mesa.pecaNaPosicao(peca,new XadrezPosicao(coluna, linha).toPosicao() );
+	}
 
 	private void initialSetup() {
-		mesa.pecaNaPosicao(new Torre(mesa, Color.WHITE), new Posicao(2, 1));
-		mesa.pecaNaPosicao(new Rei(mesa, Color.BLACK), new Posicao(0, 4));
-		mesa.pecaNaPosicao(new Rei(mesa, Color.WHITE), new Posicao(7, 4));
+		pecaNavaPosicao('b', 6 ,new Torre(mesa, Color.WHITE));
+		pecaNavaPosicao('e', 8 ,new Rei(mesa, Color.BLACK));
+		pecaNavaPosicao('e', 1 ,new Rei(mesa, Color.WHITE));
 
 	}
 
