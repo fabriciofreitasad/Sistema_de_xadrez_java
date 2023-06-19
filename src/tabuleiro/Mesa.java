@@ -24,14 +24,14 @@ public class Mesa {
 	
 	public Peca peca(int linha, int coluna) {
 		if (!posicaoExists(linha, coluna)) {
-			throw new MesaException("Posicao not on the board");
+			throw new MesaException("Essa posição não esá no tabuleiro");
 		}
 		return pecas[linha][coluna];
 	}
 	
 	public Peca peca(Posicao posicao) {
 		if (!posicaoExists(posicao)) {
-			throw new MesaException("Posicao not on the board");
+			throw new MesaException("Essa posição não esá no tabuleiro");
 		}
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
@@ -42,6 +42,19 @@ public class Mesa {
 		}
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
+	}
+	
+	public Peca removePeca(Posicao posicao) {
+		if(!posicaoExists(posicao)) {
+			throw new MesaException("Essa posição não esá no tabuleiro");
+		}
+		if(peca(posicao) == null) {
+			return null;
+		}
+		Peca aux = peca(posicao);
+		aux.posicao = null;
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return aux;
 	}
 	
 	private boolean posicaoExists(int linha, int coluna) {

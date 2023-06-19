@@ -1,7 +1,11 @@
 package application;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import xadrez.Color;
 import xadrez.XadrezPeca;
+import xadrez.XadrezPosicao;
 
 public class UI {
 
@@ -26,6 +30,18 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	public static XadrezPosicao lerXadrezPosicao(Scanner sc) {
+		try {
+			String s = sc.nextLine();
+			char coluna = s.charAt(0);
+			int linha = Integer.parseInt(s.substring(1));
+			return new XadrezPosicao(coluna, linha);
+		} catch (RuntimeException e) {
+			throw new InputMismatchException("Erro lendo posição de xadrez. Valores validos de a1 a h8. ");
+		}
+
+	}
+
 	public static void printMesa(XadrezPeca[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) {
 			System.out.print((8 - i) + " ");
@@ -38,18 +54,16 @@ public class UI {
 	}
 
 	private static void printPeca(XadrezPeca peca) {
-    	if (peca == null) {
-            System.out.print("-");
-        }
-        else {
-            if (peca.getColor() == Color.WHITE) {
-                System.out.print(ANSI_WHITE + peca + ANSI_RESET);
-            }
-            else {
-                System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
-            }
-        }
-        System.out.print(" ");
+		if (peca == null) {
+			System.out.print("-");
+		} else {
+			if (peca.getColor() == Color.WHITE) {
+				System.out.print(ANSI_WHITE + peca + ANSI_RESET);
+			} else {
+				System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
+			}
+		}
+		System.out.print(" ");
 	}
 
 }
